@@ -6,11 +6,22 @@ module.exports = function(grunt) {
 			scriptsPath: 'scripts',
 			scriptsBuildPath: 'build'
 		},
+		example: {
+			entry: 'example/index.html',
+			scriptPath: 'example/scripts.js'
+		},
 		watch: {
 			options: {
 				atBegin: true,
 				interrupt: true,
 				livereload: 35726
+			},
+			onlyRefresh: {
+				files: [
+					'<%= example.scriptPath %>',
+					'<%= example.entry %>'
+				],
+				tasks: []
 			},
 			buildScripts: {
 				files: [

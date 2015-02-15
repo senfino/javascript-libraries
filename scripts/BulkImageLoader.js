@@ -28,7 +28,7 @@
 		this._eventDispatcher._notify.apply(this._eventDispatcher, arguments);
 	};
 
-	BulkImageLoader.prototype._onImageLoadDone = function(imageObject) {
+	BulkImageLoader.prototype._saveImageInformation = function(imageObject) {
 		var height = imageObject.height;
 		var width = imageObject.width;
 		var information = {
@@ -37,15 +37,24 @@
 			url: imageObject.src
 		};
 
+		this._loadedImagesInformation.push(information);
 		this._removeLoadingImage(imageObject);
 
+		return information;
+	};
+
+	BulkImageLoader.prototype._notifyOnImageLoad = function(information) {
 		this._notify('imageLoadDone', information);
 
-		this._loadedImagesInformation.push(information);
-
 		if (this._loadingImages.length === 0) {
-			this._notify('allImagesLoadDone');
+			this._notify('allImagesLoad');
 		}
+	};
+
+	BulkImageLoader.prototype._onImageLoadDone = function(imageObject) {
+		var information = this._saveImageInformation(imageObject);
+
+		this._notifyOnImageLoad(information);
 	};
 
 	BulkImageLoader.prototype._removeLoadingImage = function(imageObject) {
@@ -57,13 +66,19 @@
 	BulkImageLoader.prototype._onImageLoadFail = function(imageObject) {
 		this._removeLoadingImage(imageObject);
 
-		if (this._loadingImages.length === 0) {
-			this._notify('allImagesLoadDone');
-		}
-
 		this._notify('imageLoadFail', {
+			width: null,
+			height: null,
 			url: imageObject.src
 		});
+
+		if (this._loadingImages.length === 0) {
+			this._notify('allImagesLoad');
+		}
+	};
+
+	BulkImageLoader.prototype.getLoadedImagesInformation = function() {
+		return this._loadedImagesInformation; //consider cloning for safety
 	};
 
 	BulkImageLoader.prototype.getLoadedInformation = function(imageUrl) {
@@ -91,16 +106,22 @@
 		savedInformation = this.getLoadedInformation();
 
 		if (savedInformation !== null) {
-			return savedInformation;
+			setTimeout(function() {
+				this._notifyOnImageLoad(savedInformation);
+			}.bind(this));
 		} else {
 			imageObject = document.createElement('img');
 
 			imageObject.onload = function() {
-				this._onImageLoadDone(imageObject);
+				setTimeout(function() {
+					this._onImageLoadDone(imageObject);
+				}.bind(this));
 			}.bind(this);
 
 			imageObject.onerror = function() {
-				this._onImageLoadFail(imageObject);
+				setTimeout(function() {
+					this._onImageLoadFail(imageObject);
+				}.bind(this));
 			}.bind(this);
 
 			this._loadingImages.push(imageObject);

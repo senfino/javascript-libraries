@@ -8,7 +8,7 @@
 	EventDispatcher.prototype._notify = function(eventName /*[, eventArguments...]*/ ) {
 		var listeners = this._listeners[eventName];
 		var listenerInformation;
-		var eventArguments = Array.prototype.split.call(arguments, 1);
+		var eventArguments = Array.prototype.slice.call(arguments, 1);
 		var listenerInformationIndex;
 
 		if (listeners) {
@@ -20,7 +20,7 @@
 					this._removeListenerByIndex(eventName, listenerInformationIndex);
 				}
 
-				listener.apply(null, eventArguments);
+				listenerInformation.callback.apply(null, eventArguments);
 			}
 		}
 	};
