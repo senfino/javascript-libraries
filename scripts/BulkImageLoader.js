@@ -99,7 +99,15 @@
 		return information;
 	};
 
-	BulkImageLoader.prototype.load = function(imageUrl) {
+	BulkImageLoader.prototype.load = function(images) {
+		var imagesArray = Array.isArray(images) ? images : [images];
+
+		imagesArray.forEach(function(imageUrl) {
+			this._loadSingle(imageUrl);
+		}.bind(this));
+	};
+
+	BulkImageLoader.prototype._loadSingle = function(imageUrl) {
 		var imageObject;
 		var savedInformation;
 

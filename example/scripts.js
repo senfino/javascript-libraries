@@ -20,8 +20,7 @@
 			' images)');
 	}
 
-	bulkImageLoader.load('images/bulk-loader-1.jpg');
-	bulkImageLoader.load('images/bulk-loader-2.jpg');
+	bulkImageLoader.load(['images/bulk-loader-1.jpg', 'images/bulk-loader-2.jpg']);
 	bulkImageLoader.load('images/bulk-loader-1.jpg');
 	bulkImageLoader.load('images/no-image-here.jpg');
 
