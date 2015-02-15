@@ -1,4 +1,6 @@
 (function(getNamespace) {
+	'use strict';
+
 	function ViewportIdentifier(customOptions) {
 		var defaults = {
 			detectionType: 'device'
@@ -41,7 +43,7 @@
 				callback.apply(null, data);
 			});
 		}
-	}
+	};
 
 	ViewportIdentifier.prototype._onResize = function(event) {
 		this.updateViewportSize();
@@ -53,12 +55,11 @@
 
 	ViewportIdentifier.prototype.getViewportIdentifier = function() {
 		return this._viewportIdentifier;
-	}
+	};
 
 	ViewportIdentifier.prototype._identifyByBrowserDimensions = function() {
 		var viewportIdentifier;
 		var viewportWidth = window.innerWidth;
-		var viewportHeight = window.innerHeight;
 
 		if (viewportWidth < 768) {
 			viewportIdentifier = 'phone';
@@ -75,7 +76,6 @@
 
 	ViewportIdentifier.prototype._identifyByScreenDimensions = function() {
 		var viewportWidth = screen.width;
-		var viewportHeight = screen.height;
 		var viewportIdentifier;
 
 		if (viewportWidth < 768) {

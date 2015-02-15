@@ -29,4 +29,5 @@
 	bulkImageLoader.on('allImagesLoad', allImagesLoadDone);
 
 	log('loading four images, one is non-existent');
+	log('events: imageLoadDone, imageLoadFail, allImagesLoad');
 })(window.com.gottocode.BulkImageLoader);
