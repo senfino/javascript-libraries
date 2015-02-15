@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 			},
 			buildScripts: {
 				files: [
-					'<%= build.scriptsPath =>/**/*.js'
+					'<%= build.scriptsPath %>/**/*.js'
 				],
 				tasks: [
 					'uglify:buildScripts'
