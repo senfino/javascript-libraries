@@ -12,6 +12,5 @@
 	"main": "build/tn-javascript-extensions.js",
 	"dependencies": {
 		"jquery": ">=2.1.0"
-		j
 	}
 }
