@@ -73,7 +73,8 @@
 		while (imageInformationIndex < this._loadedImagesInformation.length &&
 			information === null) {
 
-			if (this._loadedImagesInformation[imageInformationIndex].url === imageUrl) {
+			if (this._loadedImagesInformation[imageInformationIndex].url === imageUrl &&
+				information === null) {
 				information = this._loadedImagesInformation[imageInformationIndex];
 			} else {
 				imageInformationIndex++;

@@ -5,7 +5,7 @@
 		this._listeners = {};
 	}
 
-	EventDispatcher.prototype.notify = function(eventName /*[, eventArguments...]*/ ) {
+	EventDispatcher.prototype._notify = function(eventName /*[, eventArguments...]*/ ) {
 		var listeners = this._listeners[eventName];
 		var listenerInformation;
 		var eventArguments = Array.prototype.split.call(arguments, 1);
