@@ -1,0 +1,17 @@
+{
+	"name": "tn-javascript-extensions",
+	"version": "0.0.1",
+	"ignore": [
+		"bower.json",
+		"grunt",
+		"examples",
+		"scripts",
+		".gitignore",
+		"app"
+	],
+	"main": "build/tn-javascript-extensions.js",
+	"dependencies": {
+		"jquery": ">=2.1.0"
+		j
+	}
+}
