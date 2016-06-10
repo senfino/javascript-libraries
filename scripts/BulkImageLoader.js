@@ -118,7 +118,7 @@
 				this._notifyOnImageLoad(savedInformation);
 			}.bind(this));
 		} else {
-			imageObject = document.createElement('img');
+			imageObject = new Image();
 
 			imageObject.onload = function() {
 				setTimeout(function() {
