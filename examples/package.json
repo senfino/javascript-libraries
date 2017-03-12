@@ -1,0 +1,14 @@
+{
+  "name": "javascript-libraries-example",
+  "version": "0.1.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "gulp": "node node_modules/gulp/bin/gulp"
+  },
+  "author": "Senfino",
+  "devDependencies": {
+    "gulp": "gulpjs/gulp#4.0",
+    "senfino-gulp-tasks": "^0.3.0"
+  }
+}
